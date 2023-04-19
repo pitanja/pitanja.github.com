@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html id="page" onkeypress="enterKeyPressed()">
+<head>
+	<title>pitanja</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="icon" type="image/x-icon" href="logo.png">
+<style type="text/css" media="screen">
+body {
+	font-family:  monospace;
+	background-color: #121717;
+	color: white;
+	font-size: 20px;
+}
+*{
+	margin: 0px;
+}
+
+
+.parent {
+	margin-top: 0px;
+	margin-bottom: 60px;
+	width: 100%;	
+	display: grid;
+	justify-content: center;
+	grid-template-columns: 100%;
+}
+
+.client {
+	background-color: #212121;
+}
+
+.server, .client, .server-log {
+	display: flex;
+	padding: 20px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.server {		
+	background-color: #353535;
+}
+.server-log {		
+	background-color: #391010;
+	opacity: 0.3;
+	font-size: 15px;
+}
+.server p {
+	margin-top: 5px;
+}
+.client p {
+	margin-top: 5px;
+}
+.server img {
+	border-radius: 20px;
+	height: 35px;
+	margin-right: 10px;
+	margin-bottom: 5px;
+}
+.client img {
+	border-radius: 20px;
+	height: 35px;
+	margin-right: 10px;
+	margin-bottom: 5px;
+}
+.server-log img {
+	height: 0px;
+}
+.bottom {
+	padding: 2px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: none;
+	height: 60px;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	background-color: #212121;
+	display: flex;
+}
+.input {
+	width: 99%;
+	display: flex;
+}
+
+
+
+
+
+
+#user_input {
+	background-color: transparent;
+	color: white;
+	border: none;
+	font-size: 20px;
+	width: 90%;
+	height: 100%;
+	outline: none;
+}
+.input button {
+	width: 30%;
+	height: 100%;
+	border: none;
+	background-color: transparent;
+	border-left: 1px solid rgb(255,255,255, 0.5);
+	color: white;
+	font-size: 20px;
+	transition: background-color 0.3s ease-in-out;
+	
+}
+button:hover {
+ 	background-color: #909090;
+	transition: background-color 0.3s ease-in-out;
+}
+button:active {
+
+  background-color: white;
+  color: black;
+}
+	</style>
+	
+</head>
+<body id="body">
+
+
+
+<div class="parent" id="parent">
+
+
+</div>
+
+
+<div class="bottom" id="bottom">
+	<div class="input">	
+		<input type="" name="" id="user_input" placeholder="poruka">
+		<button onclick="init()">pošalji</button>
+	</div>
+
+</div>
+<script>
+
+document.getElementById("user_input").value = ""
+async function pitanja(){
+	let bot = {
+"1" : "Da li imaš neke skrivene talente ili veštine?",
+"2" : "Da li imaš tetovažu i ako da, šta predstavlja?",
+"3" : "Da li je naše postojanje samo slučajnost ili ima nekog većeg značaja?",
+"4" : "Da li misliš da je iskrenost uvek najbolja politika?",
+"5" : "Da li naše postojanje ima uticaj na svet oko nas?",
+"6" : "Da li postoji neka vrsta više sile koja upravlja svetom?",
+"7" : "Da li postoji prava ili pogrešna odluka?",
+"8" : "Da li postoji slobodna volja?",
+"9" : "Da li radije provodiš vreme sa prijateljima ili sam?",
+"10" : "Da li radije slušaš muziku ili gledaš filmove?",
+"11" : "Da li se baviš nekim humanitarnim radom?",
+"12" : "Da li sebe smatraš optimistom ili pesimistom?",
+"13" : "Da li se držiš nekih životnih principa?",
+"14" : "Da li se plašiš da ćeš nekad biti sam?",
+"15" : "Da li se plašiš da ćeš nekad ostati bez novca?",
+"16" : "Da li se plašiš nečega u životu?",
+"17" : "Da li se smatraš duhovnom osobom?",
+"18" : "Da li si ikada bio/la u nekoj neobičnoj situaciji?",
+"19" : "Da li si ikada bio/la u situaciji da si morala da doneseš tešku odluku?",
+"20" : "Da li si ikada bio/la u vezi sa nekim ko je imao drugačije versko, kulturno ili političko uverenje od tvog?",
+"21" : "Da li si ikada doživeo/la nešto natprirodno ili neobjašnjivo?",
+"22" : "Da li si ikada imalo/la neke avanturističke poduhvate?",
+"23" : "Da li si ikada imalo/la nekih problema sa mentalnim zdravljem?",
+"24" : "Da li si ikada moralo/la da se suočiš sa gubitkom nekoga ko ti je bio drag?",
+"25" : "Da li si ikada otišao/la na koncert i koji je to bio bend/izvođač?",
+"26" : "Da li si ikada putovalo/la sama? Kako si se osećala?",
+"27" : "Da li si ikada putovao/la sam/a i kako ti je bilo?",
+"28" : "Da li si ikada putovao/la van svoje zemlje?",
+"29" : "Da li si ikada razmišljao/la o promeni karijere ili životnog puta?",
+"30" : "Da li si ikada slomio/la kost? Ako da, kako se to dogodilo?",
+"31" : "Da li si ikada upoznao/la nekoga ko je promenio tvoj život?",
+"32" : "Da li si ikada uradilo/la nešto za šta si mislila da nije moguće?",
+"33" : "Da li si ikada volontiralo/la ili učestvovalo/la u nekoj humanitarnoj akciji?",
+"34" : "Da li si ikada živeo/la u inostranstvu i kako ti je bilo?",
+"35" : "Da li si nekad imalo/la ozbiljnu vezu? Ako da, kako se završila?",
+"36" : "Da li si više impulsivna ili pažljivo razmišljaš pre donošenja odluka?",
+"37" : "Da li si više introvert ili ekstrovert?",
+"38" : "Da li si više noćna ili jutarnja osoba?",
+"39" : "Da li si više romantična osoba ili voliš da budeš praktičan/praktična?",
+"40" : "Da li si više tiha ili društvena osoba?",
+"41" : "Da li si više timski igrač ili radiš bolje samostalno?",
+"42" : "Da li smatraš da imaš dovoljno samopouzdanja?",
+"43" : "Da li smatraš da je iskrenost uvek najbolja politika?",
+"44" : "Da li smatraš da je ljubav najvažnija stvar u životu?",
+"45" : "Da li te je ikada neko izneverio i kako si se osećala zbog toga?",
+"46" : "Da li te više privlače gradski ili ruralni krajevi?",
+"47" : "Da li ti je lakše da izraziš svoje emocije u pisanom ili usmenom obliku?",
+"48" : "Da li ti se više sviđaju kućni ljubimci ili divlje životinje?",
+"49" : "Da li ti se više sviđa leto ili zima?",
+"50" : "Da li veruješ da postoji život posle smrti?",
+"51" : "Da li veruješ da postoji život van ove planete?",
+"52" : "Da li veruješ da sve u životu ima svrhu?",
+"53" : "Da li veruješ u prijateljstvo između muškaraca i žena?",
+"54" : "Da li veruješ u sudbinu ili smatraš da sve zavisi od tebe?",
+"55" : "Da li veruješ u sudbinu ili smatraš da svojim postupcima sami oblikujemo svoju budućnost?",
+"56" : "Da li više voliš da čitaš knjige ili gledaš filmove?",
+"57" : "Da li više voliš da čitaš knjige ili gledaš serije?",
+"58" : "Da li više voliš da gledaš televiziju ili slušaš radio?",
+"59" : "Da li više voliš da putuješ ili ostaješ kod kuće?",
+"60" : "Da li više voliš da putuješ sam ili sa nekim?",
+"61" : "Da li više voliš gradski ili seoski život? Zašto?",
+"62" : "Da li voliš da kuvaš?",
+"63" : "Da li voliš da kuvaš ili da jedeš hranu?",
+"64" : "Da li voliš da pevaš?",
+"65" : "Da li voliš da putuješ, i ako da, gde bi volela da odeš?",
+"66" : "Da li voliš da putuješ i koji ti je omiljeni grad koji si posetila?",
+"67" : "Imaš li braću ili sestre?",
+"68" : "Imaš li kućnog ljubimca? Ako da, kakav je i kako se zove?",
+"69" : "Kako balansiraš između svojih ličnih potreba i potreba drugih ljudi?",
+"70" : "Kako bi opisao/la svoj idealan dan?",
+"71" : "Kako bi opisao/la svoj karakter?",
+"72" : "Kako bi opisao/la svoj odnos sa neuspehom i porazom?",
+"73" : "Kako bi opisao/la svoj odnos sa novim iskustvima i avanturama?",
+"74" : "Kako bi opisao/la svoj odnos sa samopouzdanjem i samopoštovanjem?",
+"75" : "Kako bi opisao/la svoj odnos sa spiritualnošću i duhovnošću?",
+"76" : "Kako bi opisao/la svoj odnos sa svojim duhovnim i emocionalnim zdravljem?",
+"77" : "Kako bi opisao/la svoj odnos sa tehnologijom i društvenim medijima?",
+"78" : "Kako bi opisao/la svoj stil oblačenja?",
+"79" : "Kako bi opisao/la svoju idealnu vezu?",
+"80" : "Kako bi opisao/la svoj životni stil?",
+"81" : "Kako bi opisao/la svoj način donošenja odluka?",
+"82" : "Kako bi opisao/la svoj odnos prema riziku i avanturi?",
+"83" : "Kako bi opisao/la svoj odnos sa novcem i finansijama?",
+"84" : "Kako bi opisao/la svoj odnos sa porodicom i prijateljima?",
+"85" : "Kako bi opisao/la svoj odnos sa zdravljem i fizičkom aktivnošću?",
+"86" : "Kako bi opisao/la svoj stil komunikacije i kako se prilagođavaš drugima?",
+"87" : "Kako izgraditi smislen i ispunjavajući život?",
+"88" : "Kako opisuješ svoj stil oblačenja?",
+"89" : "Kako opisuješ svoju ličnost u tri reči?",
+"90" : "Kako pristupaš rešavanju problema?",
+"91" : "Kako pristupaš svojim vezama i emotivnom životu?",
+"92" : "Kako pronaći balans između individualnosti i pripadanja grupi?",
+"93" : "Kako pronaći smisao u životu kada se čini da ga nema?",
+"94" : "Kako pronaći svoje mesto u svetu?",
+"95" : "Kako provodiš svoje slobodno vreme sa prijateljima?",
+"96" : "Kako razumeti i prihvatiti patnju?",
+"97" : "Kako razumeti i prihvatiti promene u životu?",
+"98" : "Kako razumeti i prihvatiti smrt?",
+"99" : "Kako sebe vidiš u budućnosti?",
+"100" : "Kako sebe vidiš u društvu i kako se ponašaš prema drugima?",
+"101" : "Kako se nosiš sa kritikom i konfliktima?",
+"102" : "Kako se nosiš sa promenama u životu?",
+"103" : "Kako se nosiš sa stresom?",
+"104" : "Kako se nosiš sa stresom i izazovima u životu?",
+"105" : "Kako se nosiš sa stresom i pritiskom?",
+"106" : "Kako se nosiš sa svojim emocijama i kako ih izražavaš?",
+"107" : "Kako se obično provodiš vikendom?",
+"108" : "Kako se odnosiš prema kritikama?",
+"109" : "Kako se osećaš u društvu velikih grupa ljudi?",
+"110" : "Kako se osećaš u vezi sa svojim telom i izgledom?",
+"111" : "Kako se osećaš u vezi sa svojim životnim putem i životnom svrhom?",
+"112" : "Kako se suočavaš sa neuspehom?",
+"113" : "Kako se suočavaš sa promenama i novim situacijama?",
+"114" : "Kako se suočiti sa nedostatkom smisla u životu?",
+"115" : "Kako se suočiti sa prolaznošću i nestalnošću svega što nas okružuje?",
+"116" : "Kako se suočiti sa strahom od nepoznatog?",
+"117" : "Kako si odlučila kojim putem ćeš krenuti u životu?",
+"118" : "Koja je najbolja knjiga koju si ikada pročitala/la i zašto?",
+"119" : "Koja je tvoja definicija uspeha i kako ga meriš?",
+"120" : "Koja je tvoja najveća frustracija u životu?",
+"121" : "Koja je tvoja najveća preokupacija u životu?",
+"122" : "Koja je tvoja najveća strahota?",
+"123" : "Koja je tvoja najveća želja u životu?",
+"124" : "Koja je tvoja najveća životna lekcija?",
+"125" : "Koja je tvoja omiljena aktivnost kada se želiš opustiti nakon napornog dana?",
+"126" : "Koja je tvoja omiljena boja?",
+"127" : "Koja je tvoja omiljena boja i zašto?",
+"128" : "Koja je tvoja omiljena društvena igra?",
+"129" : "Koja je tvoja omiljena knjiga?",
+"130" : "Koja je tvoja omiljena knjiga i zašto?",
+"131" : "Koja je tvoja omiljena muzička grupa ili izvođač?",
+"132" : "Koja je tvoja omiljena stvar koju radiš u slobodno vreme?",
+"133" : "Koja je tvoja omiljena vrsta muzike?",
+"134" : "Koja je tvoja omiljena životinja i zašto?",
+"135" : "Koja osoba ti najviše znači u životu?",
+"136" : "Koja su tvoja najveća postignuća i na čemu si najponosnija?",
+"137" : "Koja ti je najdraža destinacija za odmor?",
+"138" : "Koja ti je najdraža pesma?",
+"139" : "Koja ti je najdraža uspomena iz detinjstva?",
+"140" : "Koja ti je najdraža vrsta muzike?",
+"141" : "Koja ti je najdraža životinja?",
+"142" : "Koja ti je omiljena aplikacija na telefonu?",
+"143" : "Koja ti je omiljena boja?",
+"144" : "Koja ti je omiljena društvena igra?",
+"145" : "Koja ti je omiljena igračka iz detinjstva?",
+"146" : "Koja ti je omiljena knjiga?",
+"147" : "Koja ti je omiljena marka odeće?",
+"148" : "Koja ti je omiljena sezona u godini?",
+"149" : "Koja ti je omiljena vrsta hrane?",
+"150" : "Koja ti je omiljena vrsta plesa?",
+"151" : "Koje bi mesto na svetu najviše volela da posetiš?",
+"152" : "Koje je tvoje mišljenje o politici?",
+"153" : "Koje je tvoje najdraže jelo?",
+"154" : "Koje je tvoje omiljeno godišnje doba?",
+"155" : "Koje je tvoje omiljeno piće?",
+"156" : "Koje knjige, filmovi ili muzika su uticali na tebe i zašto?",
+"157" : "Koje osobine ceniš kod drugih ljudi?",
+"158" : "Koje si godine smatraš da su najvažnije u životu?",
+"159" : "Koje su tvoje najdraže uspomene iz detinjstva?",
+"160" : "Koje su tvoje najveće frustracije u životu i kako ih rešavaš?",
+"161" : "Koje su tvoje najveće slabosti?",
+"162" : "Koje su tvoje najveće slabosti i kako se trudiš da ih prevaziđeš?",
+"163" : "Koje su tvoje najveće snage?",
+"164" : "Koje su tvoje najveće strasti u životu?",
+"165" : "Koje su tvoje najveće vrednosti i principi?",
+"166" : "Koje su tvoje najveće vrline?",
+"167" : "Koje su tvoje najveće vrline i mane?",
+"168" : "Koje su tvoje najveće želje i snovi?",
+"169" : "Koje su tvoje najveće želje i šta radiš da ih ostvariš?",
+"170" : "Koje su tvoje najveće životne lekcije?",
+"171" : "Koje su tvoje najveće životne lekcije i šta si naučila iz njih?",
+"172" : "Koje su tvoje omiljene aktivnosti?",
+"173" : "Koje su tvoje omiljene aktivnosti na otvorenom?",
+"174" : "Koje su tvoje omiljene aktivnosti u prirodi?",
+"175" : "Koje su tvoje omiljene aktivnosti u slobodno vreme?",
+"176" : "Koje su tvoje omiljene aktivnosti za fizičku rekreaciju?",
+"177" : "Koje su tvoje omiljene boje i zašto?",
+"178" : "Koje su tvoje omiljene knjige i zašto?",
+"179" : "Koje su tvoje omiljene knjige iz detinjstva?",
+"180" : "Koje su tvoje omiljene stvari u vezi sa godišnjim dobima?",
+"181" : "Koje su tvoje omiljene stvari u vezi sa zimom?",
+"182" : "Koje su tvoje omiljene vrste cveća?",
+"183" : "Koje su tvoje omiljene vrste hrane?",
+"184" : "Koje su tvoje omiljene vrste hrane i pića?",
+"185" : "Koje su tvoje omiljene vrste hrane i restorani?",
+"186" : "Koje su tvoje omiljene vrste muzike i izvođači?",
+"187" : "Koje su tvoje omiljene životinje i zašto?",
+"188" : "Koje su tvoje snove i ciljevi za budućnost?",
+"189" : "Koje su tvoje životne želje?",
+"190" : "Koje ti je omiljeno mesto u tvojoj kući?",
+"191" : "Koje životne vrednosti su ti najvažnije?",
+"192" : "Koji događaj iz prošlosti te je najviše oblikovao kao osobu?",
+"193" : "Koji događaj u tvom životu smatraš najvažnijim?",
+"194" : "Koji je najveći rizik koji si ikada preuzeo/la u životu?",
+"195" : "Koji je tvoj najdraži kućni ljubimac?",
+"196" : "Koji je tvoj najdraži praznik i zašto?",
+"197" : "Koji je tvoj najveći san?",
+"198" : "Koji je tvoj najveći strah?",
+"199" : "Koji je tvoj najveći strah u vezi sa budućnošću?",
+"200" : "Koji je tvoj omiljeni citat?",
+"201" : "Koji je tvoj omiljeni citat ili izreka?",
+"202" : "Koji je tvoj omiljeni deo dana?",
+"203" : "Koji je tvoj omiljeni društveni događaj ili festival?",
+"204" : "Koji je tvoj omiljeni film?",
+"205" : "Koji je tvoj omiljeni film ili serija?",
+"206" : "Koji je tvoj omiljeni film i zašto?",
+"207" : "Koji je tvoj omiljeni film iz detinjstva?",
+"208" : "Koji je tvoj omiljeni film, knjiga ili pesma?",
+"209" : "Koji je tvoj omiljeni film svih vremena?",
+"210" : "Koji je tvoj omiljeni film žanra horor?",
+"211" : "Koji je tvoj omiljeni grad ili destinacija za putovanja?",
+"212" : "Koji je tvoj omiljeni gradski park?",
+"213" : "Koji je tvoj omiljeni grad u kojem si ikada bio/la?",
+"214" : "Koji je tvoj omiljeni grad za posetu?",
+"215" : "Koji je tvoj omiljeni hobi?",
+"216" : "Koji je tvoj omiljeni hobi ili aktivnost?",
+"217" : "Koji je tvoj omiljeni hobi u prirodi?",
+"218" : "Koji je tvoj omiljeni hobi u vezi sa umetnošću?",
+"219" : "Koji je tvoj omiljeni instrument?",
+"220" : "Koji je tvoj omiljeni izum u istoriji?",
+"221" : "Koji je tvoj omiljeni kućni ljubimac?",
+"222" : "Koji je tvoj omiljeni letnji ili zimski sport?",
+"223" : "Koji je tvoj omiljeni muzički žanr?",
+"224" : "Koji je tvoj omiljeni način da iskažeš svoju kreativnost?",
+"225" : "Koji je tvoj omiljeni način da naučiš nešto novo?",
+"226" : "Koji je tvoj omiljeni način da pomogneš drugima?",
+"227" : "Koji je tvoj omiljeni način da proslaviš svoj rođendan?",
+"228" : "Koji je tvoj omiljeni način da provedeš vikend?",
+"229" : "Koji je tvoj omiljeni način da provedeš vreme sa porodicom?",
+"230" : "Koji je tvoj omiljeni način da sebe inspirišeš?",
+"231" : "Koji je tvoj omiljeni način da sebe nagradiš za uspehe?",
+"232" : "Koji je tvoj omiljeni način da se izboriš sa stresom?",
+"233" : "Koji je tvoj omiljeni način da se izraziš?",
+"234" : "Koji je tvoj omiljeni način da se opustiš?",
+"235" : "Koji je tvoj omiljeni način da se opustiš nakon napornog dana?",
+"236" : "Koji je tvoj omiljeni oblik umetnosti (muzika, slikarstvo, ples, itd.)?",
+"237" : "Koji je tvoj omiljeni oblik zabave (filmovi, serije, igre, itd.)?",
+"238" : "Koji je tvoj omiljeni obrok?",
+"239" : "Koji je tvoj omiljeni posao?",
+"240" : "Koji je tvoj omiljeni posao u kući?",
+"241" : "Koji je tvoj omiljeni restoran?",
+"242" : "Koji je tvoj omiljeni restoran brze hrane?",
+"243" : "Koji je tvoj omiljeni restoran brze hrane i šta naručuješ?",
+"244" : "Koji je tvoj omiljeni restoran i zašto?",
+"245" : "Koji je tvoj omiljeni restoran u kojem si ikada bio/la i šta si naručio/la?",
+"246" : "Koji je tvoj omiljeni sport?",
+"247" : "Koji je tvoj omiljeni sport i da li se baviš nekim sportom?",
+"248" : "Koji je tvoj omiljeni sport ili tim?",
+"249" : "Koji je tvoj omiljeni sportista?",
+"250" : "Koji je tvoj omiljeni sport za gledanje?",
+"251" : "Koji je tvoj omiljeni sport za gledanje i za igranje?",
+"252" : "Koji je tvoj omiljeni žanr knjiga?",
+"253" : "Koji su najvažniji događaji u tvom životu i kako su te oblikovali?",
+"254" : "Koji su tvoji ciljevi u životu?",
+"255" : "Koji su tvoji ciljevi za budućnost?",
+"256" : "Koji su tvoji hobiji i interesovanja?",
+"257" : "Koji su tvoji najveći ciljevi u narednim godinama i kako ćeš ih ostvariti?",
+"258" : "Koji su tvoji najveći izazovi i kako se nosiš sa njima?",
+"259" : "Koji su tvoji najveći kvaliteti kao osobe?",
+"260" : "Koji su tvoji najveći nedostaci?",
+"261" : "Koji su tvoji najveći nedostaci i kako se nosiš sa njima?",
+"262" : "Koji su tvoji najveći snovi i ciljevi?",
+"263" : "Koji su tvoji najveći strahovi i kako ih prevazilaziš?",
+"264" : "Koji su tvoji najveći strahovi u vezi sa budućnošću?",
+"265" : "Koji su tvoji najveći strasti i interesovanja u životu?",
+"266" : "Koji su tvoji najveći uspesi u karijeri i kako si ih postigla?",
+"267" : "Koji su tvoji omiljeni hobiji?",
+"268" : "Koji su tvoji omiljeni načini opuštanja i odmora?",
+"269" : "Koji ti je omiljeni način opuštanja?",
+"270" : "Koji ti je omiljeni praznik i zašto?",
+"271" : "Koji ti je omiljeni restoran u gradu i šta najčešće naručuješ?",
+"272" : "Koju knjigu si poslednju pročitao/la?",
+"273" : "Koju vrstu hrane ne voliš da jedeš?",
+"274" : "Koju vrstu muzike ne voliš da slušaš?",
+"275" : "Koliko dugo si već u vezi/slobodan/na?",
+"276" : "Ko su ljudi koji su najviše uticali na tebe i na koji način?",
+"277" : "Postoji li neka viša svrha postojanja?",
+"278" : "Šta bi najradije promenio/la kod sebe?",
+"279" : "Šta bi radio/la kada bi imao/la celu nedelju slobodnu?",
+"280" : "Šta bi volela da radiš ako bi novac bio nevažan faktor?",
+"281" : "Šta je ljubav i zašto je toliko važna?",
+"282" : "Šta je smisao života?",
+"283" : "Šta se događa nakon smrti?",
+"284" : "Šta su tvoje najveće slabosti?",
+"285" : "Šta te čini srećnim i ispunjenim?",
+"286" : "Šta te čini srećnom?",
+"287" : "Šta te motiviše da ustaneš svako jutro?",
+"288" : "Šta te najviše motiviše u životu?",
+"289" : "Šta znači biti srećan i kako postići sreću?",
+"290" : "Jesi ti vojnik u životu?"
+	};
+	
+	const max = 290;
+	let randomNumber = Math.floor(Math.random() * (max - 1 + 1)) + 1;
+	result = bot[randomNumber]
+	crun(1, result)
+
+}
+
+	
+async function init() {
+	document.getElementById("user_input")
+
+	if(user_input.value == "/verzija") {
+		crun(0, "verzija : 1.0");
+		user_input.value = ""
+		
+	}
+	else if (user_input.value == "/politikaprivatnosti") {
+		user_input.value = ""
+		crun(0, "Ne sakupljamo absolutno ništa. Ono što pišete našem botu ostaje samo vama i nestane kada osvežite stranicu.")
+	}
+	else if (user_input.value.toLowerCase() == "ne znam" || user_input.value.toLowerCase() == "ne znam.") {
+		run()
+		user_input.value = ""
+		await sleep(1000)
+		await crun(1,"Sasvim je u redu je ako ne znaš <3.")
+		pitanja()
+	
+	}
+	else if(user_input.value != "" && user_input.value != " "){
+		run()
+		user_input.value = ""
+		await sleep(3000)
+		pitanja()
+		
+		
+	} 
+}
+
+function enterKeyPressed() {
+      if (event.keyCode == 13) {
+         
+         init()
+         return true;
+      } else {
+         return false;
+      }
+   }
+   
+var parent = document.getElementById('parent');
+
+var count = 1;
+function run() {
+	var a = document.getElementById("user_input")
+	let element2 = document.createElement("div");
+	element2.id = "id" + count;
+	parent.appendChild(element2);
+	document.getElementById("id"+count).setAttribute("class", "client");
+	let element = document.createElement("p");
+	newImg = document.createElement('img');
+
+		// Postavljanje atributa src na željenu vrijednost
+	newImg.src = 'logo2.png';
+	element.innerHTML = "" + a.value
+	var parentdiv = document.getElementById('id'+count);
+	parentdiv.appendChild(newImg);
+	parentdiv.appendChild(element);
+	window.scrollTo(0, document.body.scrollHeight);	
+	count++;
+	
+}
+async function crun(opt,user_input) {
+	if(user_input.length != 0){
+		// creating new element
+		let element2 = document.createElement("div");
+		element2.id = "id" + count;
+		parent.appendChild(element2);
+		
+		document.getElementById("id"+count).setAttribute("class", "server");
+		let element = document.createElement("p");
+		newImg = document.createElement('img');
+
+		// Postavljanje atributa src na željenu vrijednost
+		newImg.src = 'logo.png';
+
+		// Pronalazak HTML elementa u koji želite dodati sliku
+		
+
+		// Dodavanje slike u HTML element
+	    
+		// adding id to the element
+		element.id = "id" + count;
+		var parentdiv = document.getElementById('id'+count);
+		parentdiv.appendChild(newImg);
+		if (opt != 0 ) { 
+		element.innerHTML = ""
+		parentdiv.appendChild(element);
+		}
+		if (opt != 0 ) {
+			for(i=0;i<=user_input.length+2;i++){
+				element.innerHTML += user_input.charAt(i);
+				parentdiv.appendChild(element);
+				window.scrollTo(0, document.body.scrollHeight);	
+				await new Promise(r => setTimeout(r, 70));
+			}
+		} else {
+			document.getElementById("id"+count).setAttribute("class", "server-log");
+			element.innerHTML = user_input
+			parentdiv.appendChild(element);
+		
+		}
+		count++;
+	} else
+		console.log("user_input is null");
+}
+function get(id) {
+	return document.getElementById(id)
+
+}
+const sleep = (milliseconds) => { return new Promise(resolve => setTimeout(resolve, milliseconds)); };
+async function start() {
+await crun(0,"Vaša privatnost nam je veoma važna, te stoga ne sakupljamo nikakve podatke o vama. Ne sakupljamo absolutno ništa. Ono što napišete našem botu ostaje samo vama i nestane kada osvežite stranicu. verzija 1.0 made by vojnik with <3. Ako si programer, ovo je open-source GPL 2.0.")
+await sleep(2000)
+crun(1,"Dobar dan. Kako si?")
+} start()
+</script>
+</body>
+</html>
